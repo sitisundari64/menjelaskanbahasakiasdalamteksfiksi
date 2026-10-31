@@ -1,0 +1,825 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jejak Makna | TKA Bahasa Indonesia Kelas IX</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+<style>
+:root{--ink:#26324b;--purple:#7566d9;--pink:#ff8eaa;--yellow:#ffd66b}
+*{box-sizing:border-box}
+body{font-family:Nunito,sans-serif;background:#f7f7ff;color:var(--ink)}
+h1,h2,h3,.brand{font-family:Fredoka,Nunito,sans-serif}
+.view{display:none;animation:rise .35s ease}
+.view.active{display:block}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.card{background:white;border:2px solid #ecebff;border-radius:24px;box-shadow:0 8px 0 #e9e7fb}
+.btn{border-radius:16px;padding:12px 18px;font-weight:900;transition:.18s;box-shadow:0 4px 0 rgba(38,50,75,.13)}
+.btn:active{transform:translateY(3px);box-shadow:none}
+.primary{background:var(--purple);color:white}
+.soft{background:#efedff;color:#594bb6}
+.pink{background:#ffe6ed;color:#b84e70}
+.yellow{background:#fff2c9;color:#856313}
+.navbtn{padding:10px 14px;border-radius:14px;font-weight:800;white-space:nowrap}
+.navbtn.active{background:#7566d9;color:white}
+.pill{display:inline-block;padding:5px 11px;border-radius:99px;font-size:12px;font-weight:900;background:#efedff;color:#6254bd}
+.choice{display:block;width:100%;text-align:left;padding:13px 15px;border:2px solid #e7e6f5;border-radius:15px;margin:9px 0;font-weight:800;background:white}
+.choice:hover{border-color:#9b91eb;background:#f8f7ff}
+.choice.correct{background:#e3f8ed;border-color:#57bf86}
+.choice.wrong{background:#ffe8ec;border-color:#ee8297}
+.note{background:#fff2b9;border-radius:5px 18px 18px 18px;padding:15px;box-shadow:3px 5px 0 #eadc9c;transform:rotate(-1deg)}
+.tab{padding:10px 14px;border-radius:12px;font-weight:900;background:#f0effb}
+.tab.active{background:#7566d9;color:white}
+.progress{height:10px;background:#eee;border-radius:99px;overflow:hidden}
+.progress>div{height:100%;background:linear-gradient(90deg,#8b7ce8,#ff91ae);width:0;transition:.3s}
+input,textarea,select{border:2px solid #e7e6f5;border-radius:13px;padding:11px;width:100%;outline:none}
+input:focus,textarea:focus,select:focus{border-color:#887be4}
+@media(max-width:640px){.navscroll{overflow-x:auto}.heroTitle{font-size:2.1rem}.card{border-radius:19px}}
+@media print{
+body *{visibility:hidden}
+#certificate,#certificate *{visibility:visible}
+#certificate{position:absolute;left:0;top:0;width:100%;box-shadow:none}
+}
+</style>
+</head>
+<body>
+
+<header class="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-violet-100">
+<div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
+<div class="flex items-center gap-3">
+<div class="w-11 h-11 rounded-2xl bg-violet-100 text-violet-700 grid place-items-center text-xl">
+<i class="fa-solid fa-book-open"></i>
+</div>
+<div>
+<div class="brand text-lg font-bold">JEJAK MAKNA</div>
+<div class="text-xs font-bold text-slate-500">TKA Bahasa Indonesia • Kelas IX SMP</div>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="btn soft text-sm" onclick="go('home')">
+<i class="fa-solid fa-house"></i><span class="hidden sm:inline"> Beranda</span>
+</button>
+<button id="audioBtn" class="btn yellow text-sm" onclick="toggleAudio()">
+<i class="fa-solid fa-volume-xmark"></i> Audio OFF
+</button>
+</div>
+</div>
+
+<nav class="navscroll max-w-7xl mx-auto px-3 pb-3 flex gap-2" id="nav">
+<button class="navbtn active" data-view="home" onclick="go('home')">🏡 Beranda</button>
+<button class="navbtn" data-view="tujuan" onclick="go('tujuan')">🎯 Tujuan</button>
+<button class="navbtn" data-view="pemantik" onclick="go('pemantik')">💡 Pemantik</button>
+<button class="navbtn" data-view="materi" onclick="go('materi')">📚 Materi</button>
+<button class="navbtn" data-view="simulasi" onclick="go('simulasi')">🔬 Simulasi</button>
+<button class="navbtn" data-view="kuis" onclick="go('kuis')">🏆 Kuis</button>
+<button class="navbtn" data-view="games" onclick="go('games')">🎮 Games</button>
+<button class="navbtn" data-view="kesimpulan" onclick="go('kesimpulan')">🌟 Kesimpulan</button>
+<button class="navbtn" data-view="refleksi" onclick="go('refleksi')">📝 Refleksi</button>
+</nav>
+</header>
+
+<main class="max-w-7xl mx-auto px-4 py-6">
+
+<!-- HOME -->
+<section id="home" class="view active">
+<div class="rounded-[30px] p-7 md:p-10 bg-gradient-to-br from-violet-100 via-pink-50 to-yellow-50 grid md:grid-cols-2 gap-6 items-center overflow-hidden">
+<div>
+<span class="pill">PETUALANGAN LITERASI • KELAS IX</span>
+<h1 class="heroTitle text-4xl md:text-5xl font-bold mt-4 leading-tight">
+Temukan Makna<br><span class="text-violet-700">di Balik Cerita!</span>
+</h1>
+<p class="mt-4 text-slate-600 font-bold leading-relaxed">
+Jelajahi bahasa kias, citraan, bagian penting teks, dan urutan peristiwa. Baca dengan cermat, bayangkan dengan imajinasi, lalu susun ceritanya!
+</p>
+<button class="btn primary mt-6" onclick="go('tujuan')">
+Mulai Belajar <i class="fa-solid fa-arrow-right ml-2"></i>
+</button>
+<div class="flex gap-3 mt-5 text-sm font-extrabold text-slate-500 flex-wrap">
+<span>⏱️ 3 × 40 menit</span>
+<span>📖 Teks fiksi</span>
+<span>✨ Interaktif</span>
+</div>
+</div>
+<div class="text-center">
+<img class="w-full max-h-72 object-contain rounded-3xl"
+src="https://i.ibb.co.com/hFJHmgp2/Desain-tanpa-judul-9.png"
+alt="Ilustrasi pembelajaran literasi"
+onerror="this.style.display='none';document.getElementById('fallbackHero').style.display='block'">
+<div id="fallbackHero" style="display:none" class="text-8xl py-12">📚🦉✏️</div>
+</div>
+</div>
+
+<div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-7">
+<button class="card p-5 text-left" onclick="go('materi')">
+<div class="text-3xl">📚</div><b class="block mt-2">Materi Interaktif</b>
+<small class="text-slate-500">Kenali konsep dan contoh.</small>
+</button>
+<button class="card p-5 text-left" onclick="go('simulasi')">
+<div class="text-3xl">🔍</div><b class="block mt-2">Laboratorium Kata</b>
+<small class="text-slate-500">Uji bahasa kias dan citraan.</small>
+</button>
+<button class="card p-5 text-left" onclick="go('kuis')">
+<div class="text-3xl">🏆</div><b class="block mt-2">Kuis Tantangan</b>
+<small class="text-slate-500">3 level, 10 soal tiap level.</small>
+</button>
+<button class="card p-5 text-left" onclick="go('games')">
+<div class="text-3xl">🎮</div><b class="block mt-2">Games Literasi</b>
+<small class="text-slate-500">Cocokkan konsep dan contoh.</small>
+</button>
+</div>
+
+<div class="card p-5 mt-6">
+<h2 class="text-xl font-bold">🧭 Petunjuk penggunaan</h2>
+<ol class="list-decimal ml-5 mt-2 space-y-1 font-semibold text-slate-600">
+<li>Pilih menu secara berurutan atau sesuai kebutuhan.</li>
+<li>Baca materi dan tekan tab untuk berpindah bahasan.</li>
+<li>Coba simulasi, lalu tantang diri melalui kuis dan games.</li>
+<li>Isi refleksi setelah pembelajaran selesai.</li>
+</ol>
+</div>
+</section>
+
+<!-- TUJUAN -->
+<section id="tujuan" class="view">
+<span class="pill">01 • ARAH BELAJAR</span>
+<h1 class="text-3xl font-bold mt-3">Tujuan Pembelajaran 🎯</h1>
+<p class="mt-2 text-slate-600">Setelah kegiatan belajar, peserta didik diharapkan mampu:</p>
+<div class="grid md:grid-cols-2 gap-4 mt-5">
+<div class="card p-5">
+<div class="text-3xl">🪄</div>
+<h3 class="font-bold text-xl mt-2">Memahami bahasa kias</h3>
+<p class="text-slate-600 mt-2">Mengidentifikasi ungkapan kias dalam teks fiksi serta menjelaskan maknanya berdasarkan konteks.</p>
+</div>
+<div class="card p-5">
+<div class="text-3xl">👁️👂</div>
+<h3 class="font-bold text-xl mt-2">Mengenali citraan</h3>
+<p class="text-slate-600 mt-2">Menentukan citraan penglihatan, pendengaran, penciuman, perabaan, dan pengecapan serta pengaruhnya terhadap suasana cerita.</p>
+</div>
+<div class="card p-5">
+<div class="text-3xl">🗂️</div>
+<h3 class="font-bold text-xl mt-2">Menyusun kerangka teks</h3>
+<p class="text-slate-600 mt-2">Merangkum bagian penting teks fiksi ke dalam kerangka atau bagan yang runtut.</p>
+</div>
+<div class="card p-5">
+<div class="text-3xl">⏳</div>
+<h3 class="font-bold text-xl mt-2">Mengurutkan peristiwa</h3>
+<p class="text-slate-600 mt-2">Menentukan kronologi peristiwa berdasarkan penanda waktu dan hubungan sebab-akibat.</p>
+</div>
+</div>
+<div class="card p-5 mt-5 bg-violet-50">
+<b>Manfaat belajar:</b> Kita lebih peka membaca cerita, memahami pesan tersirat, membayangkan suasana, dan menceritakan kembali peristiwa secara runtut.
+</div>
+</section>
+
+<!-- PEMANTIK -->
+<section id="pemantik" class="view">
+<span class="pill">02 • AKTIVASI PENGETAHUAN</span>
+<h1 class="text-3xl font-bold mt-3">Pertanyaan Pemantik 💡</h1>
+<p class="text-slate-600 mt-2">Tarik napas perlahan, tenangkan pikiran, lalu bayangkan suasana dalam cerita.</p>
+<div class="grid md:grid-cols-2 gap-5 mt-5">
+<div class="card p-6">
+<div class="text-4xl">🌧️</div>
+<h3 class="text-xl font-bold mt-3">Kartu 1: Hujan di Senja Hari</h3>
+<p class="text-slate-600 mt-2">“Air matanya mengalir seperti sungai yang tak bertepi.”</p>
+<button class="btn soft mt-4" onclick="reveal('r1')">Buka pertanyaan</button>
+<div id="r1" class="hidden mt-4 p-4 rounded-xl bg-yellow-50">
+<b>Renungkan:</b> Apakah air mata benar-benar menjadi sungai? Makna apa yang ingin disampaikan penulis? Mengapa perbandingan itu dipilih?
+</div>
+</div>
+<div class="card p-6">
+<div class="text-4xl">🌲</div>
+<h3 class="text-xl font-bold mt-3">Kartu 2: Hutan Pagi</h3>
+<p class="text-slate-600 mt-2">“Kicau burung menyambut matahari, sementara aroma tanah basah memenuhi udara.”</p>
+<button class="btn soft mt-4" onclick="reveal('r2')">Buka pertanyaan</button>
+<div id="r2" class="hidden mt-4 p-4 rounded-xl bg-yellow-50">
+<b>Renungkan:</b> Indra apa yang digunakan untuk membangun suasana? Kata mana yang membuatmu seolah berada di hutan?
+</div>
+</div>
+</div>
+<div class="card p-5 mt-5">
+<h3 class="font-bold text-lg">Aktivitas mindfulness 30 detik 🌱</h3>
+<p class="text-slate-600 mt-2">Pejamkan mata sejenak. Ingat satu tempat yang membuatmu nyaman. Bayangkan warna, suara, aroma, dan sensasi yang kamu rasakan. Itulah cara sederhana memahami citraan.</p>
+</div>
+</section>
+
+<!-- MATERI -->
+<section id="materi" class="view">
+<span class="pill">03 • EKSPLORASI KONSEP</span>
+<h1 class="text-3xl font-bold mt-3">Materi Belajar Interaktif 📚</h1>
+<div class="flex flex-wrap gap-2 mt-5" id="tabs">
+<button class="tab active" onclick="tabMateri(0)">Bahasa Kias</button>
+<button class="tab" onclick="tabMateri(1)">Citraan</button>
+<button class="tab" onclick="tabMateri(2)">Kerangka Teks</button>
+<button class="tab" onclick="tabMateri(3)">Kronologi</button>
+</div>
+<div id="materiBody" class="card p-6 mt-4"></div>
+</section>
+
+<!-- SIMULASI -->
+<section id="simulasi" class="view">
+<span class="pill">04 • LABORATORIUM KATA</span>
+<h1 class="text-3xl font-bold mt-3">Simulasi: Detektif Cerita 🔬</h1>
+<p class="text-slate-600 mt-2">Pilih kalimat, tentukan jenis ungkapan, lalu periksa interpretasimu.</p>
+<div class="card p-6 mt-5">
+<label class="font-extrabold">Pilih kalimat fiksi</label>
+<select id="simSentence" class="mt-2" onchange="updateSim()">
+<option value="0">“Wajahnya bersinar seperti rembulan.”</option>
+<option value="1">“Angin malam berbisik di telingaku.”</option>
+<option value="2">“Aroma roti hangat memenuhi dapur.”</option>
+<option value="3">“Ia menjadi tulang punggung keluarga.”</option>
+</select>
+<div class="rounded-2xl bg-violet-50 p-5 mt-4">
+<div class="text-3xl" id="simEmoji">🌕</div>
+<p class="text-xl font-extrabold mt-2" id="simText"></p>
+<p class="text-slate-600 mt-2" id="simHint"></p>
+</div>
+<div class="grid sm:grid-cols-2 gap-3 mt-4">
+<div>
+<label class="font-bold">Kategori</label>
+<select id="simKind" class="mt-2">
+<option>Personifikasi</option>
+<option>Perumpamaan (simile)</option>
+<option>Metafora</option>
+<option>Citraan</option>
+</select>
+</div>
+<div>
+<label class="font-bold">Makna/efek kalimat</label>
+<input id="simMeaning" placeholder="Tuliskan makna menurutmu...">
+</div>
+</div>
+<button class="btn primary mt-4" onclick="checkSim()">Periksa jawaban</button>
+<p id="simFeedback" class="font-extrabold mt-3" aria-live="polite"></p>
+</div>
+
+<div class="card p-5 mt-5">
+<h3 class="font-bold">Tantangan mini: susun urutan cerita</h3>
+<p class="text-slate-600 text-sm mt-1">Tekan peristiwa dalam urutan kronologis yang benar.</p>
+<div id="orderList" class="grid sm:grid-cols-2 gap-2 mt-3"></div>
+<button class="btn soft mt-3" onclick="checkOrder()">Cek urutan</button>
+<p id="orderFeedback" class="font-bold mt-2"></p>
+</div>
+</section>
+
+<!-- KUIS -->
+<section id="kuis" class="view">
+<span class="pill">05 • UJI PEMAHAMAN</span>
+<h1 class="text-3xl font-bold mt-3">Kuis Tantangan 🏆</h1>
+
+<div id="quizStart" class="card p-6 mt-5">
+<h2 class="text-xl font-bold">Siap menguji pemahamanmu?</h2>
+<label class="block font-bold mt-4">Nama untuk sertifikat</label>
+<input id="studentName" placeholder="Contoh: Shaka / Haflasea" class="mt-2">
+<p class="font-bold mt-5">Pilih tingkat tantangan:</p>
+<div class="grid sm:grid-cols-3 gap-3 mt-3">
+<button class="btn soft" onclick="startQuiz('mudah')">🌱 Mudah</button>
+<button class="btn yellow" onclick="startQuiz('sedang')">⚡ Sedang</button>
+<button class="btn pink" onclick="startQuiz('sulit')">🔥 Sulit</button>
+</div>
+<p class="text-sm text-slate-500 mt-4">Setiap level berisi 10 soal pilihan ganda.</p>
+</div>
+
+<div id="quizPlay" class="card p-6 mt-5 hidden">
+<div class="flex justify-between gap-2 items-center">
+<span id="quizLevel" class="pill"></span>
+<button class="btn pink text-sm" onclick="exitQuiz()">Keluar / Ganti Level</button>
+</div>
+<div class="flex justify-between mt-4 text-sm font-bold">
+<span id="quizCount">Soal 1/10</span>
+<span id="quizScore">Skor: 0</span>
+</div>
+<div class="progress mt-2"><div id="quizProgress"></div></div>
+<h3 id="question" class="text-xl font-bold mt-5"></h3>
+<div id="answers" class="mt-3"></div>
+<div id="explain" class="hidden rounded-xl p-4 bg-violet-50 mt-3"></div>
+<button id="nextQuestion" class="btn primary mt-4 hidden" onclick="nextQ()">Selanjutnya →</button>
+</div>
+
+<div id="quizResult" class="card p-6 mt-5 hidden text-center">
+<div class="text-5xl">🎉</div>
+<h2 class="text-2xl font-bold mt-3">Tantangan selesai!</h2>
+<p id="resultText" class="mt-2 font-bold"></p>
+<div id="certificate" class="border-4 border-double border-violet-300 rounded-2xl p-6 mt-5 bg-yellow-50">
+<div class="text-sm tracking-widest font-black">SERTIFIKAT PENCAPAIAN</div>
+<div class="text-2xl font-bold text-violet-700 mt-2">Jejak Makna dalam Cerita</div>
+<p class="mt-3">Diberikan kepada</p>
+<h3 id="certName" class="text-3xl font-bold mt-1">Peserta Didik</h3>
+<p class="mt-2">Atas partisipasi dalam kuis TKA Bahasa Indonesia Kelas IX</p>
+<p id="certScore" class="font-black text-xl mt-3"></p>
+<p class="text-xs mt-4">Siti Sundari, M.Pd. • 2026</p>
+</div>
+<button class="btn primary mt-5" onclick="window.print()">Cetak / Simpan Sertifikat</button>
+<button class="btn soft mt-5" onclick="resetQuiz()">Kembali ke level</button>
+</div>
+</section>
+
+<!-- GAMES -->
+<section id="games" class="view">
+<span class="pill">06 • BERMAIN SAMBIL BELAJAR</span>
+<h1 class="text-3xl font-bold mt-3">Games: Pasangkan Maknanya 🎮</h1>
+<p class="text-slate-600 mt-2">Pilih satu ungkapan, lalu pilih kategori atau makna yang sesuai. Bisa dimainkan dengan klik maupun sentuhan.</p>
+<div class="card p-6 mt-5">
+<div class="flex justify-between items-center">
+<b id="gameProgress">Pasangan benar: 0/5</b>
+<button class="btn soft text-sm" onclick="initGame()">Ulangi game</button>
+</div>
+<div class="grid md:grid-cols-2 gap-5 mt-5">
+<div><h3 class="font-bold mb-2">Ungkapan</h3><div id="gameLeft" class="space-y-2"></div></div>
+<div><h3 class="font-bold mb-2">Makna / kategori</h3><div id="gameRight" class="space-y-2"></div></div>
+</div>
+<p id="gameFeedback" class="font-extrabold mt-4"></p>
+</div>
+</section>
+
+<!-- KESIMPULAN -->
+<section id="kesimpulan" class="view">
+<span class="pill">07 • MERANGKUM PEMBELAJARAN</span>
+<h1 class="text-3xl font-bold mt-3">Kesimpulan 🌟</h1>
+<div class="card p-6 mt-5 space-y-4">
+<p>🪄 <b>Bahasa kias</b> menyampaikan makna tidak secara langsung. Maknanya dipahami melalui konteks, misalnya perumpamaan, metafora, dan personifikasi.</p>
+<p>👁️ <b>Citraan</b> membangkitkan pengalaman indrawi pembaca: penglihatan, pendengaran, penciuman, perabaan, dan pengecapan.</p>
+<p>🗂️ <b>Kerangka teks</b> merangkum unsur atau bagian penting seperti pengenalan, konflik, klimaks, penyelesaian, dan amanat.</p>
+<p>⏳ <b>Kronologi</b> menunjukkan urutan peristiwa berdasarkan waktu dan hubungan sebab-akibat. Perhatikan penanda seperti mula-mula, kemudian, setelah itu, dan akhirnya.</p>
+</div>
+<div class="card p-5 mt-5 bg-yellow-50">
+<h3 class="font-bold text-xl">Cek pemahaman dirimu</h3>
+<p class="mt-2">Bisakah kamu menjelaskan satu bahasa kias, menemukan dua citraan, membuat bagan cerita, dan mengurutkan peristiwanya?</p>
+<button class="btn primary mt-3" onclick="go('refleksi')">Isi Refleksi →</button>
+</div>
+</section>
+
+<!-- REFLEKSI -->
+<section id="refleksi" class="view">
+<span class="pill">08 • SUARA DAN REFLEKSI SISWA</span>
+<h1 class="text-3xl font-bold mt-3">Papan Refleksi Kolaboratif 📝</h1>
+<p class="text-slate-600 mt-2">Bagikan pengalaman belajarmu. Catatan akan muncul sebagai sticky notes di papan ini.</p>
+<div class="card p-6 mt-5">
+<div class="grid md:grid-cols-2 gap-3">
+<div>
+<label class="font-bold">Nama</label>
+<input id="refName" placeholder="Contoh: Shaka atau Haflasea">
+</div>
+<div>
+<label class="font-bold">Perasaan / kesan</label>
+<select id="refMood" class="mt-2">
+<option>😊 Senang dan paham</option>
+<option>🤔 Tertarik tetapi masih bingung</option>
+<option>😎 Tertantang</option>
+<option>🌱 Perlu berlatih lagi</option>
+</select>
+</div>
+</div>
+<label class="font-bold block mt-4">Pesan refleksi</label>
+<textarea id="refMessage" rows="3" class="mt-2" placeholder="Hari ini saya belajar bahwa..."></textarea>
+<button class="btn primary mt-4" onclick="addReflection()">Kirim refleksi</button>
+<p id="refStatus" class="text-sm font-bold mt-2"></p>
+</div>
+<h2 class="text-xl font-bold mt-7">Papan Catatan Kelas</h2>
+<div id="notes" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-4"></div>
+</section>
+
+</main>
+
+<footer class="text-center py-8 text-sm text-slate-500 font-bold">
+Dikembangkan oleh Siti Sundari, M.Pd. • Copyright © 2026
+</footer>
+
+<script>
+/* ==================================================
+   KONFIGURASI GOOGLE APPS SCRIPT
+   Isi GAS_URL dengan URL Web App GAS setelah deploy.
+   Kosong = penyimpanan lokal browser.
+================================================== */
+const GAS_URL = "";
+
+let audioOn=false,audioCtx=null;
+
+function toggleAudio(){
+ audioOn=!audioOn;
+ document.getElementById('audioBtn').innerHTML=audioOn
+ ?'<i class="fa-solid fa-volume-high"></i> Audio ON'
+ :'<i class="fa-solid fa-volume-xmark"></i> Audio OFF';
+ if(audioOn)sfx('click');
+}
+
+function sfx(type){
+ if(!audioOn)return;
+ try{
+  audioCtx=audioCtx||new(window.AudioContext||window.webkitAudioContext)();
+  let o=audioCtx.createOscillator(),g=audioCtx.createGain();
+  o.connect(g);g.connect(audioCtx.destination);
+  o.type='sine';
+  o.frequency.value=type==='correct'?740:type==='wrong'?190:420;
+  g.gain.setValueAtTime(.12,audioCtx.currentTime);
+  g.gain.exponentialRampToValueAtTime(.001,audioCtx.currentTime+.18);
+  o.start();o.stop(audioCtx.currentTime+.19);
+ }catch(e){}
+}
+
+function go(id){
+ document.querySelectorAll('.view').forEach(v=>v.classList.toggle('active',v.id===id));
+ document.querySelectorAll('.navbtn').forEach(b=>b.classList.toggle('active',b.dataset.view===id));
+ window.scrollTo({top:0,behavior:'smooth'});
+ sfx('click');
+}
+
+function reveal(id){
+ document.getElementById(id).classList.toggle('hidden');
+ sfx('click');
+}
+
+/* MATERI */
+const materi=[
+`<h2 class="text-2xl font-bold">1. Bahasa Kias 🪄</h2>
+<p class="mt-3 text-slate-600">Bahasa kias adalah ungkapan yang maknanya tidak selalu sama dengan arti kata sebenarnya. Penulis menggunakannya agar cerita lebih hidup dan ekspresif.</p>
+<div class="grid md:grid-cols-3 gap-3 mt-4">
+<div class="p-4 bg-pink-50 rounded-2xl"><b>Perumpamaan (simile)</b><p class="mt-2">Membandingkan dengan kata seperti, bagai, laksana.</p><i>“Wajahnya cerah seperti mentari.”</i></div>
+<div class="p-4 bg-yellow-50 rounded-2xl"><b>Metafora</b><p class="mt-2">Perbandingan langsung tanpa kata pembanding.</p><i>“Dia adalah bintang kelas.”</i></div>
+<div class="p-4 bg-violet-50 rounded-2xl"><b>Personifikasi</b><p class="mt-2">Memberi sifat manusia kepada benda/alam.</p><i>“Daun menari ditiup angin.”</i></div>
+</div>
+<p class="mt-4 font-bold">Strategi: temukan ungkapan → baca kalimat sekitar → tentukan makna kontekstual → jelaskan efeknya.</p>`,
+
+`<h2 class="text-2xl font-bold">2. Citraan 👁️👂</h2>
+<p class="mt-3 text-slate-600">Citraan adalah penggunaan kata yang merangsang indra sehingga pembaca seolah-olah melihat, mendengar, mencium, meraba, atau mengecap sesuatu.</p>
+<div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 mt-4">
+<div class="p-4 bg-violet-50 rounded-xl"><b>👁️ Penglihatan</b><p class="mt-2 italic">Langit jingga membentang di ufuk.</p></div>
+<div class="p-4 bg-violet-50 rounded-xl"><b>👂 Pendengaran</b><p class="mt-2 italic">Gemericik air terdengar dari sungai.</p></div>
+<div class="p-4 bg-violet-50 rounded-xl"><b>👃 Penciuman</b><p class="mt-2 italic">Harum melati memenuhi halaman.</p></div>
+<div class="p-4 bg-violet-50 rounded-xl"><b>🖐️ Perabaan</b><p class="mt-2 italic">Udara dingin menyentuh kulit.</p></div>
+<div class="p-4 bg-violet-50 rounded-xl"><b>👅 Pengecapan</b><p class="mt-2 italic">Rasa mangga itu manis dan segar.</p></div>
+</div>
+<p class="mt-4 font-bold">Tanyakan: indra apa yang seolah digunakan pembaca saat membayangkan kalimat?</p>`,
+
+`<h2 class="text-2xl font-bold">3. Kerangka / Bagan Teks 🗂️</h2>
+<p class="mt-3 text-slate-600">Kerangka adalah susunan ringkas bagian penting teks. Untuk cerita fiksi, gunakan unsur alur berikut sebagai panduan.</p>
+<div class="grid sm:grid-cols-2 gap-3 mt-4">
+<div class="flex gap-3 p-3 rounded-xl bg-violet-50"><span class="rounded-full bg-violet-200 w-8 h-8 grid place-items-center font-black">1</span><div><b>Pengenalan</b><p class="text-sm text-slate-600">Tokoh, latar, dan situasi awal.</p></div></div>
+<div class="flex gap-3 p-3 rounded-xl bg-violet-50"><span class="rounded-full bg-violet-200 w-8 h-8 grid place-items-center font-black">2</span><div><b>Muncul konflik</b><p class="text-sm text-slate-600">Masalah mulai dihadapi tokoh.</p></div></div>
+<div class="flex gap-3 p-3 rounded-xl bg-violet-50"><span class="rounded-full bg-violet-200 w-8 h-8 grid place-items-center font-black">3</span><div><b>Klimaks</b><p class="text-sm text-slate-600">Puncak ketegangan atau masalah.</p></div></div>
+<div class="flex gap-3 p-3 rounded-xl bg-violet-50"><span class="rounded-full bg-violet-200 w-8 h-8 grid place-items-center font-black">4</span><div><b>Penyelesaian</b><p class="text-sm text-slate-600">Konflik mereda dan cerita berakhir.</p></div></div>
+<div class="flex gap-3 p-3 rounded-xl bg-violet-50"><span class="rounded-full bg-violet-200 w-8 h-8 grid place-items-center font-black">5</span><div><b>Amanat</b><p class="text-sm text-slate-600">Pesan yang dapat dipetik pembaca.</p></div></div>
+</div>
+<p class="mt-4">Bagan dapat dibuat sebagai daftar, tabel, peta alur, atau diagram panah.</p>`,
+
+`<h2 class="text-2xl font-bold">4. Kronologi Peristiwa ⏳</h2>
+<p class="mt-3 text-slate-600">Kronologi adalah urutan kejadian berdasarkan waktu. Perhatikan penanda waktu dan hubungan sebab-akibat.</p>
+<div class="space-y-3 mt-5">
+<div class="flex gap-3 items-center"><div class="rounded-full bg-violet-600 text-white w-9 h-9 grid place-items-center font-black">1</div><div class="bg-violet-50 rounded-xl p-3 flex-1"><b>Mula-mula</b><p>Tokoh menemukan sebuah dompet di taman.</p></div></div>
+<div class="flex gap-3 items-center"><div class="rounded-full bg-violet-600 text-white w-9 h-9 grid place-items-center font-black">2</div><div class="bg-violet-50 rounded-xl p-3 flex-1"><b>Kemudian</b><p>Ia memeriksa kartu identitas di dalamnya.</p></div></div>
+<div class="flex gap-3 items-center"><div class="rounded-full bg-violet-600 text-white w-9 h-9 grid place-items-center font-black">3</div><div class="bg-violet-50 rounded-xl p-3 flex-1"><b>Setelah itu</b><p>Ia mencari alamat pemilik dompet.</p></div></div>
+<div class="flex gap-3 items-center"><div class="rounded-full bg-violet-600 text-white w-9 h-9 grid place-items-center font-black">4</div><div class="bg-violet-50 rounded-xl p-3 flex-1"><b>Akhirnya</b><p>Dompet kembali kepada pemiliknya.</p></div></div>
+</div>
+<p class="mt-4 font-bold">Ingat: kronologi menjawab “peristiwa apa terjadi lebih dahulu, lalu apa, dan bagaimana akhirnya?”</p>`
+];
+
+function tabMateri(i){
+ document.querySelectorAll('.tab').forEach((b,n)=>b.classList.toggle('active',n===i));
+ document.getElementById('materiBody').innerHTML=materi[i];
+ sfx('click');
+}
+tabMateri(0);
+
+/* SIMULASI */
+const simData=[
+{emoji:'🌕',text:'“Wajahnya bersinar seperti rembulan.”',hint:'Kata seperti menunjukkan perbandingan. Maknanya wajah tampak cerah atau bercahaya.',kind:'Perumpamaan (simile)',meaning:'Wajah tampak cerah/bercahaya.'},
+{emoji:'🍃',text:'“Angin malam berbisik di telingaku.”',hint:'Angin diberi kemampuan manusia untuk berbisik.',kind:'Personifikasi',meaning:'Angin bertiup pelan dan menimbulkan suara lembut.'},
+{emoji:'🍞',text:'“Aroma roti hangat memenuhi dapur.”',hint:'Kata aroma merangsang indra penciuman.',kind:'Citraan',meaning:'Pembaca seolah mencium bau roti.'},
+{emoji:'💪',text:'“Ia menjadi tulang punggung keluarga.”',hint:'Ungkapan tulang punggung bukan arti harfiah, melainkan penopang utama.',kind:'Metafora',meaning:'Ia menjadi penanggung jawab utama keluarga.'}
+];
+
+function updateSim(){
+ let d=simData[+document.getElementById('simSentence').value];
+ simEmoji.textContent=d.emoji;
+ simText.textContent=d.text;
+ simHint.textContent=d.hint;
+ simKind.value=d.kind;
+ simMeaning.value='';
+ simFeedback.textContent='';
+}
+
+function checkSim(){
+ let d=simData[+simSentence.value];
+ let ok=simKind.value===d.kind&&simMeaning.value.trim().length>4;
+ simFeedback.textContent=ok?'✅ Tepat! '+d.meaning:'💡 Belum tepat. Petunjuk: '+d.hint;
+ sfx(ok?'correct':'wrong');
+}
+
+const orderItems=[
+'Akhirnya, Rani menyerahkan buku itu kepada pemiliknya.',
+'Mula-mula, Rani menemukan buku tertinggal di halte.',
+'Setelah itu, ia membaca nama pada sampul buku.',
+'Kemudian, Rani bertanya kepada petugas halte.'
+];
+let order=[];
+
+function renderOrder(){
+ orderList.innerHTML='';
+ orderItems.forEach((x,i)=>{
+  let b=document.createElement('button');
+  b.className='choice';
+  b.textContent=(order.includes(i)?'✓ ':'＋ ')+x;
+  b.disabled=order.includes(i);
+  b.onclick=()=>{order.push(i);renderOrder()};
+  orderList.appendChild(b);
+ });
+}
+
+function checkOrder(){
+ let ok=order.join(',')==='1,2,3,0';
+ orderFeedback.textContent=ok?'🎉 Benar! Urutan kronologis sudah tepat.':'Belum tepat. Petunjuk: perhatikan mula-mula, setelah itu, kemudian, akhirnya.';
+ sfx(ok?'correct':'wrong');
+ if(ok&&window.confetti)confetti();
+}
+renderOrder();
+
+/* BANK SOAL: 3 LEVEL, 10 SOAL PER LEVEL */
+const bank={
+mudah:[
+['Ungkapan “wajahnya bersinar seperti bulan” termasuk ...',['Perumpamaan','Metafora','Personifikasi','Hiperbola'],0,'Kata seperti menandai perbandingan atau simile.'],
+['“Daun-daun menari ditiup angin” merupakan ...',['Metafora','Personifikasi','Simile','Ironi'],1,'Daun diberi tindakan manusia, yaitu menari.'],
+['Kata “harum” terutama berkaitan dengan indra ...',['Penglihatan','Pendengaran','Penciuman','Perabaan'],2,'Harum ditangkap oleh indra penciuman.'],
+['“Suara petir menggelegar” mengandung citraan ...',['Pendengaran','Pengecapan','Penglihatan','Penciuman'],0,'Suara menggelegar dapat didengar.'],
+['Makna “bintang kelas” adalah ...',['Benda langit di kelas','Siswa berprestasi','Lampu kelas','Siswa yang terlambat'],1,'Bintang kelas bermakna siswa yang menonjol dalam prestasi.'],
+['Kronologi berarti ...',['Urutan waktu peristiwa','Daftar tokoh','Tempat kejadian','Pesan cerita'],0,'Kronologi menyusun kejadian berdasarkan urutan waktu.'],
+['Kata penanda urutan waktu adalah ...',['Namun','Karena','Kemudian','Walaupun'],2,'Kemudian menandai kejadian berikutnya.'],
+['Bagian cerita yang memuat masalah disebut ...',['Pengenalan','Konflik','Amanat','Penutup'],1,'Konflik adalah masalah yang dialami tokoh.'],
+['Kerangka teks berguna untuk ...',['Mengacak cerita','Merangkum bagian penting','Menghapus tokoh','Mengganti latar'],1,'Kerangka membantu menyusun ide utama secara teratur.'],
+['“Es itu terasa dingin di telapak tangan” merupakan citraan ...',['Perabaan','Penciuman','Pendengaran','Penglihatan'],0,'Dingin dirasakan melalui kulit.']
+],
+sedang:[
+['“Ia adalah matahari bagi keluarganya.” Makna ungkapan tersebut ...',['Suka berjemur','Sumber semangat/penerang keluarga','Bekerja di luar','Takut gelap'],1,'Matahari menjadi metafora bagi sosok yang memberi semangat dan harapan.'],
+['“Ombak berkejaran menuju pantai” menggunakan ...',['Personifikasi','Simile','Metonimia','Litotes'],0,'Ombak digambarkan melakukan tindakan seperti manusia.'],
+['Kalimat yang memuat citraan pengecapan adalah ...',['Langit merah menyala','Kopi itu pahit di lidah','Lonceng berdentang','Bunga berbau wangi'],1,'Pahit di lidah melibatkan indra pengecapan.'],
+['Mengapa bahasa kias digunakan dalam fiksi?',['Memperindah dan memperkuat makna','Menghilangkan alur','Membuat tokoh tidak jelas','Menghapus latar'],0,'Bahasa kias membuat pengungkapan lebih ekspresif dan imajinatif.'],
+['Kalimat “Aroma tanah basah menyeruak setelah hujan” membangun citraan ...',['Perabaan','Penciuman','Pendengaran','Pengecapan'],1,'Aroma merupakan rangsangan indra penciuman.'],
+['Bagian klimaks dalam alur adalah ...',['Pengenalan tokoh','Puncak ketegangan','Akhir cerita','Latar tempat'],1,'Klimaks merupakan puncak konflik atau ketegangan.'],
+['Urutan paling logis setelah “mula-mula” adalah ...',['Akhirnya','Sebelumnya','Kemudian','Penutup'],2,'Kemudian menandai kejadian yang mengikuti kejadian awal.'],
+['Apa langkah tepat memahami makna kias?',['Menebak tanpa konteks','Membaca konteks kalimat dan cerita','Mengartikan harfiah saja','Mengabaikan kata sekitar'],1,'Konteks membantu menemukan makna yang dimaksud penulis.'],
+['Bagan alur yang baik seharusnya ...',['Memuat semua kata','Menunjukkan bagian penting secara runtut','Mengulang kalimat acak','Hanya berisi judul'],1,'Bagan menyajikan ide pokok dan hubungan antarbagiannya.'],
+['Jika tokoh kehilangan peta lalu tersesat, hubungan kedua peristiwa adalah ...',['Sebab-akibat','Persamaan bunyi','Perbandingan','Pertentangan tanpa hubungan'],0,'Kehilangan peta menjadi sebab tokoh tersesat.']
+],
+sulit:[
+['“Kota itu menelan langkah-langkah kecil para perantau.” Tafsir paling tepat ...',['Kota benar-benar makan manusia','Kota digambarkan menyerap kehidupan/aktivitas perantau','Perantau sedang makan','Kota menjadi tokoh nyata'],1,'Personifikasi “menelan” memberi kesan kota menyerap atau menguasai kehidupan para perantau.'],
+['“Kesunyian menggigit tulang” paling kuat membangun kesan ...',['Suasana sangat dingin dan mencekam','Suasana ramai','Rasa manis','Pemandangan cerah'],0,'Ungkapan kias menggambarkan dingin atau kesunyian yang terasa menusuk.'],
+['“Denting gelas beradu di ruang makan” dominan memakai citraan ...',['Penglihatan','Pendengaran','Penciuman','Pengecapan'],1,'Denting merupakan bunyi yang ditangkap telinga.'],
+['Kalimat “Pagi merangkak pelan di balik bukit” menggunakan personifikasi karena ...',['Pagi diberi tindakan seperti makhluk hidup','Bukit bisa berjalan','Pagi memiliki kaki sungguhan','Kalimat menyatakan fakta ilmiah'],0,'Merangkak adalah tindakan makhluk hidup yang dilekatkan pada pagi.'],
+['Dalam cerita, tokoh berangkat, tersesat, bertemu penolong, lalu pulang. Kerangka paling tepat ...',['Pulang-berangkat-tersesat-bertemu','Berangkat-tersesat-bertemu penolong-pulang','Bertemu-pulang-berangkat-tersesat','Tersesat-pulang-berangkat-bertemu'],1,'Kerangka mengikuti urutan kejadian sebagaimana berlangsung.'],
+['Mengapa penanda waktu saja belum cukup untuk menyusun kronologi?',['Karena perlu memahami hubungan kejadian dan konteks','Karena penanda waktu selalu salah','Karena cerita tidak punya urutan','Karena semua peristiwa bersamaan'],0,'Kronologi juga mempertimbangkan isi kejadian dan hubungan sebab-akibat.'],
+['“Kenangan itu pahit seperti jamu” termasuk ...',['Simile dengan kata pembanding','Metafora tanpa pembanding','Personifikasi','Citraan pendengaran'],0,'Kata seperti menandai perbandingan langsung.'],
+['Kalimat “Dari kejauhan tampak lampu-lampu berkelip” dominan membangun ...',['Citraan penglihatan','Citraan penciuman','Citraan pengecapan','Citraan perabaan'],0,'Tampak dan berkelip merangsang indra penglihatan.'],
+['Bagian penting yang sebaiknya masuk kerangka cerita adalah ...',['Setiap kata sifat','Pengenalan, konflik, klimaks, penyelesaian','Semua dialog secara lengkap','Hanya nama penulis'],1,'Kerangka merangkum struktur dan peristiwa utama cerita.'],
+['Sebuah cerita memakai kilas balik. Cara terbaik menyusun kronologi adalah ...',['Mengikuti urutan paragraf saja','Membedakan urutan penceritaan dan urutan waktu kejadian','Menghapus peristiwa lampau','Mengurutkan berdasarkan panjang kalimat'],1,'Kilas balik mengubah urutan penyajian; kronologi perlu disusun menurut waktu kejadian.']
+]
+};
+
+let level='',questions=[],qIndex=0,score=0,answered=false;
+
+function startQuiz(l){
+ level=l;
+ questions=bank[l];
+ qIndex=0;
+ score=0;
+ quizStart.classList.add('hidden');
+ quizResult.classList.add('hidden');
+ quizPlay.classList.remove('hidden');
+ renderQ();
+ go('kuis');
+}
+
+function renderQ(){
+ answered=false;
+ let q=questions[qIndex];
+ quizLevel.textContent='Level '+level.toUpperCase();
+ quizCount.textContent=`Soal ${qIndex+1}/10`;
+ quizScore.textContent='Skor: '+score;
+ quizProgress.style.width=(qIndex*10)+'%';
+ question.textContent=q[0];
+ answers.innerHTML='';
+ explain.classList.add('hidden');
+ nextQuestion.classList.add('hidden');
+
+ q[1].forEach((a,i)=>{
+  let b=document.createElement('button');
+  b.className='choice';
+  b.textContent=String.fromCharCode(65+i)+'. '+a;
+  b.onclick=()=>answerQ(i,b);
+  answers.appendChild(b);
+ });
+}
+
+function answerQ(i,btn){
+ if(answered)return;
+ answered=true;
+ let q=questions[qIndex],ok=i===q[2];
+ if(ok)score+=10;
+
+ [...answers.children].forEach((b,n)=>{
+  b.disabled=true;
+  if(n===q[2])b.classList.add('correct');
+  else if(n===i)b.classList.add('wrong');
+ });
+
+ explain.innerHTML=(ok?'✅ <b>Jawaban benar.</b> ':'❌ <b>Belum tepat.</b> ')+q[3]+'<br><span class="text-sm">Jawaban tepat: '+q[1][q[2]]+'</span>';
+ explain.classList.remove('hidden');
+ quizScore.textContent='Skor: '+score;
+ nextQuestion.classList.remove('hidden');
+ sfx(ok?'correct':'wrong');
+}
+
+function nextQ(){
+ qIndex++;
+ if(qIndex<10)renderQ();
+ else finishQuiz();
+}
+
+function finishQuiz(){
+ quizPlay.classList.add('hidden');
+ quizResult.classList.remove('hidden');
+ let name=studentName.value.trim()||'Peserta Didik';
+ certName.textContent=name;
+ certScore.textContent='Skor: '+score+'/100';
+ resultText.textContent=`${name}, kamu memperoleh ${score} dari 100. `+
+ (score>=80?'Luar biasa! Pertahankan rasa ingin tahumu!':
+ score>=60?'Bagus! Terus berlatih agar makin terampil.':
+ 'Jangan menyerah. Baca kembali materi dan coba lagi!');
+ quizProgress.style.width='100%';
+ if(window.confetti)confetti({particleCount:140,spread:80,origin:{y:.65}});
+ sfx('correct');
+}
+
+function exitQuiz(){
+ quizPlay.classList.add('hidden');
+ quizResult.classList.add('hidden');
+ quizStart.classList.remove('hidden');
+ sfx('click');
+}
+
+function resetQuiz(){exitQuiz()}
+
+/* GAMES */
+const pairs=[
+['Wajahnya seperti bulan','Perumpamaan'],
+['Daun menari','Personifikasi'],
+['Bintang kelas','Metafora'],
+['Aroma melati','Penciuman'],
+['Suara gemuruh','Pendengaran']
+];
+
+let selectedL=null,selectedR=null,matched=new Set();
+
+function initGame(){
+ selectedL=null;
+ selectedR=null;
+ matched=new Set();
+ gameFeedback.textContent='';
+
+ let left=[...pairs.keys()].sort(()=>Math.random()-.5);
+ let right=[...pairs.keys()].sort(()=>Math.random()-.5);
+
+ gameLeft.innerHTML='';
+ gameRight.innerHTML='';
+
+ left.forEach(i=>{
+  let b=document.createElement('button');
+  b.className='choice';
+  b.textContent=pairs[i][0];
+  b.onclick=()=>pickGame('l',i,b);
+  b.dataset.id=i;
+  gameLeft.appendChild(b);
+ });
+
+ right.forEach(i=>{
+  let b=document.createElement('button');
+  b.className='choice';
+  b.textContent=pairs[i][1];
+  b.onclick=()=>pickGame('r',i,b);
+  b.dataset.id=i;
+  gameRight.appendChild(b);
+ });
+ updateGame();
+}
+
+function pickGame(side,id,btn){
+ if(matched.has(id))return;
+
+ if(side==='l'){
+  selectedL=id;
+  [...gameLeft.children].forEach(x=>x.classList.remove('correct'));
+  btn.classList.add('correct');
+ }else{
+  selectedR=id;
+  [...gameRight.children].forEach(x=>x.classList.remove('correct'));
+  btn.classList.add('correct');
+ }
+
+ if(selectedL!==null&&selectedR!==null){
+  if(selectedL===selectedR){
+   matched.add(id);
+   gameFeedback.textContent='✅ Pasangan tepat!';
+   sfx('correct');
+  }else{
+   gameFeedback.textContent='Coba lagi. Perhatikan petunjuk maknanya.';
+   sfx('wrong');
+  }
+  selectedL=null;
+  selectedR=null;
+
+  setTimeout(()=>{
+   [...gameLeft.children,...gameRight.children].forEach(x=>x.classList.remove('correct'));
+   updateGame();
+  },450);
+ }
+}
+
+function updateGame(){
+ gameProgress.textContent=`Pasangan benar: ${matched.size}/5`;
+
+ [...gameLeft.children,...gameRight.children].forEach(b=>{
+  if(matched.has(+b.dataset.id)){
+   b.disabled=true;
+   b.classList.add('correct');
+  }
+ });
+
+ if(matched.size===5){
+  gameFeedback.textContent='🎉 Hebat! Semua pasangan berhasil ditemukan.';
+  if(window.confetti)confetti();
+ }
+}
+initGame();
+
+/* REFLEKSI DIGITAL */
+function getNotes(){
+ try{return JSON.parse(localStorage.getItem('jejakRefleksi')||'[]')}
+ catch(e){return[]}
+}
+
+function showNotes(){
+ notes.innerHTML='';
+ getNotes().slice().reverse().forEach(n=>{
+  let d=document.createElement('div');
+  d.className='note';
+
+  let a=document.createElement('b');
+  a.textContent=n.name+' • '+n.mood;
+
+  let p=document.createElement('p');
+  p.className='mt-2';
+  p.textContent=n.message;
+
+  let t=document.createElement('small');
+  t.className='block mt-3 text-slate-500';
+  t.textContent=n.date;
+
+  d.append(a,p,t);
+  notes.appendChild(d);
+ });
+}
+
+async function addReflection(){
+ let name=refName.value.trim();
+ let message=refMessage.value.trim();
+ let mood=refMood.value;
+
+ if(!name||!message){
+  refStatus.textContent='Mohon isi nama dan pesan refleksi.';
+  return;
+ }
+
+ let item={
+  name,mood,message,
+  date:new Date().toLocaleString('id-ID')
+ };
+
+ let arr=getNotes();
+ arr.push(item);
+ localStorage.setItem('jejakRefleksi',JSON.stringify(arr));
+ showNotes();
+ refMessage.value='';
+ refStatus.textContent='Refleksi tersimpan di perangkat ini.';
+ sfx('correct');
+
+ if(GAS_URL){
+  try{
+   await fetch(GAS_URL,{
+    method:'POST',
+    mode:'no-cors',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify(item)
+   });
+   refStatus.textContent='Refleksi dikirim ke Google Spreadsheet.';
+  }catch(e){
+   refStatus.textContent='Tersimpan lokal. Pengiriman ke spreadsheet gagal; periksa URL/deployment GAS.';
+  }
+ }
+}
+
+showNotes();
+updateSim();
+</script>
+</body>
+</html>
